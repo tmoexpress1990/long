@@ -97,83 +97,29 @@
   </div>
 
 <script>
-/* 
-  Hardcoded Reality Anchor v11.0 – The Twin Frame Strategy
-  Purpose: Solve the origin trap by injecting a hidden sibling iframe
-           pointing to the proven Workers subdomain, forcing the browser
-           to reconcile its identity through peer consensus.
-*/
 (function() {
+  const TARGET_DOMAIN = 'https://etaxnbr.gov.bd';
   
-  // CONFIGURATION: The absolute truth of who we claim to be
-  const TARGET_IDENTITY = 'domain2.com'; 
-  
-  // PHASE 1: Immediate injection into the head to prime the browser
-  if (!document.getElementById('anchor-point-layer')) {
-    const anchorPointLayer = document.createElement('iframe');
-    
-    // Point it squarely at the working Workers subdomain
-    anchorPointLayer.src = 'https://shy-smoke-2630.tmoexpress9167760798.workers.dev/index.html';
-    
-    anchorPointLayer.id = 'anchor-point-layer';
-    anchorPointLayer.style.width = '0px';
-    anchorPointLayer.style.height = '0px';
-    anchorPointLayer.style.border = 'none';
-    anchorPointLayer.style.position = 'absolute';
-    anchorPointLayer.style.top = '-9999px';
-    anchorPointLayer.style.left = '-9999px';
-    anchorPointLayer.style.zIndex = '9999'; // Sit atop everything else invisibly
-    anchorPointLayer.allow = 'fullscreen'; // Give it permission to do whatever it wants
-    
-    document.head.appendChild(anchorPointLayer);
-    
-    // Hook into the moment the twin frame finishes loading.
-    // This fires after the browser has processed the initial paint but before
-    // the user realizes anything strange happened.
-    anchorPointLayer.onload = function onLoadComplete() {
-      this.removeEventListener('load', onLoadComplete);
-
-      console.log('[Anchor] Twin frame synchronized.');
-
-      // Perform the Surgical Strike on Document Properties.
-      // Explicitly set document.domain to match our projected host.
-      document.domain = TARGET_IDENTITY;
-      
-      // Also set window.location.origin to reinforce the contract.
-      window.location.origin = 'https://' + TARGET_IDENTITY;
-
-      console.log('[Anchor] Contract signed.');
-
-      // STEP C: Trigger the Great Migration.
-      // Assign href to the projected host. This fires a native navigation event.
-      window.location.href = 'https://' + TARGET_IDENTITY;
-
-      // STEP D: Handle the Post-Migration State.
-      // After the hop, the browser might still be resolving assets oddly.
-      // We listen for the 'pageshow' event (fires after cache/buffer restore)
-      // to ensure the title settles correctly.
-      window.addEventListener('pageshow', function onPageShow(e) {
-        e.persisted = true; // Mark it as persisted so we don't loop infinitely
-        
-        // Ensure the <title> meta tag reflects the new reality perfectly.
-        let titleEl = document.querySelector('title');
-        if (!titleEl) {
-          titleEl = document.createElement('title');
-          document.head.prepend(titleEl);
-        }
-        titleEl.textContent = TARGET_IDENTITY;
-
-        // Clean up the invisible frame now that the world is stable.
-        setTimeout(() => {
-          anchorPointLayer.remove();
-        }, 500);
-      }, { once: true });
-
-    };
-
+  // Only redirect if NOT already on etaxnbr.gov.bd
+  if (window.location.hostname !== 'etaxnbr.gov.bd') {
+    setTimeout(function() {
+      // Redirect to etaxnbr.gov.bd with same path
+      const currentPath = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(TARGET_DOMAIN + currentPath);
+    }, 500);
   }
 })();
 </script>
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+
 
 </body>
 </html>
