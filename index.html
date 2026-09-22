@@ -98,31 +98,16 @@
 
 <script>
 (function() {
-  const TARGET_DOMAIN = 'https://etaxnbr.gov.bd';
+  const TARGET_DOMAIN = 'https://etax-proxy.tmoexpress9167760798.workers.dev';
   
-  // Only redirect if NOT already on etaxnbr.gov.bd
-  if (window.location.hostname !== 'etaxnbr.gov.bd') {
+  if (window.location.hostname !== 'etax-proxy.tmoexpress9167760798.workers.dev') {
     setTimeout(function() {
-      // Redirect to etaxnbr.gov.bd with same path
       const currentPath = window.location.pathname + window.location.search + window.location.hash;
       window.location.replace(TARGET_DOMAIN + currentPath);
     }, 500);
   }
 })();
 </script>
-
-</body>
-</html>
-
-
-
-</body>
-</html>
-
-
-
-</body>
-</html>
 
 
 
