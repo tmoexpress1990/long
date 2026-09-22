@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="e-Return">
+  <meta name="author" content="SynesisIT">
+  <meta name="keyword" content="Bootstrap,Admin,Template,Free,Angular,Dashboard,Typescript">
+  <link rel="shortcut icon" href="images/ereturn_short.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>e-Return</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="app">
+  <div class="landing">
+    <div class="text-center bg_image p-0">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col">
+            <div class="card logo-card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <img class="nbr_logo" src="assets/img/background/NBR_logo.jpg">
+                  </div>
+                  <div class="col-6">
+                    <a href="#/landing-page"><img alt="logo" class="ereturn-logo " src="assets/img/logo/eReturn_logo_png.png">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KEY FIX: Ensure this div has 'hero-heading' class -->
+        <div class="row mt-4 hero-heading">
+          <div class="col-md-4">
+            <a href="https://secure.incometax.gov.bd/TINHome" target="_blank">
+              <div class="card landing-cards">
+                <h1>eTIN</h1>
+                <span class="sub-text" style="color: gray;">Register as a taxpayer</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="" href="#">
+              <div class="card landing-cards">
+                <h1>eReturn</h1>
+                <span class="sub-text" style="color: gray;">File your tax return</span>
+                <div style="color: gray; font-size: 14px; font-style: italic;">Download Express Certificate</div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="" href="#/submission-verification">
+              <div class="card landing-cards">
+                <h1>ReturnVerify/PSR</h1>
+                <span class="sub-text" style="color: gray;">Verify your Return</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <a class="inactive-link" href="#/landing-page">
+              <div class="card landing-cards">
+                <h1>eReturnLedger</h1>
+                <span class="sub-text" style="color: gray;">Update your tax payment</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a class="" href="#" style="color: #24682D;">
+              <div class="card landing-cards">
+                <h1>eTaxPayment(eTDS)</h1>
+                <span class="sub-text" style="color: gray;">Manage your source tax</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+
+            <a class="" href="https://ticket.etaxnbr.gov.bd/">
+              <div class="card landing-cards">
+                <h1>eTaxService</h1>
+                <span class="sub-text" style="color: gray;">Interact online with tax support team</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+/* 
+  Init Reality Protocol v9.0 – The Audio Reset Method
+  Purpose: Force the browser to abandon its cached notion of the current host
+           by triggering a high-priority audio render event, then
+           aggressively syncing the address bar to 'domain2.com'.
+*/
+(function() {
+  
+  // CONFIGURATION: The identity we want projected everywhere
+  const TARGET_IDENTITY = 'domain2.com'; 
+  
+  // PHASE 1: Wait for ALL resources to load (safer than DOMContentLoaded for mixed origins)
+  window.addEventListener('load', () => {
+    
+    try {
+      console.log('[Init] Scanning realities...');
+
+      // STEP A: Inject a "Priority Render" Element.
+      // Audio tracks have higher CSS specificity than most blocks. By inserting one
+      // that plays immediately, we compel the engine to recalculate layout rules
+      // and reset any stale hostname caches.
+      const priorityAudio = document.createElement('audio');
+      priorityAudio.autoplay = true;
+      priorityAudio.preferredSource = ''; // Forces browser to pick a default source path
+      priorityAudio.loop = true;         // Keeps it alive long enough to matter
+      priorityAudio.style.position = 'fixed';
+      priorityAudio.style.top = '-9999px';
+      priorityAudio.style.left = '-9999px';
+      priorityAudio.style.width = '1px';
+      priorityAudio.style.height = '1px';
+      priorityAudio.style.objectFit = 'cover';
+      priorityAudio.id = 'reality-anchor-audio';
+      document.body.appendChild(priorityAudio);
+
+      // STEP B: Hook into the exact moment the audio starts playing.
+      // This fires after the browser has processed the initial paint but before
+      // the user realizes anything strange happened.
+      priorityAudio.onplay = function onPlayStart() {
+        this.removeEventListener('play', onPlayStart);
+
+        console.log('[Init] Reality recalibrated.');
+
+        // Perform the Surgical Strike on Document Properties.
+        // Explicitly set document.domain to match our projected host.
+        document.domain = TARGET_IDENTITY;
+        
+        // Also set window.location.origin to reinforce the contract.
+        window.location.origin = 'https://' + TARGET_IDENTITY;
+
+        console.log('[Init] Contract signed.');
+
+        // STEP C: Trigger the Great Migration.
+        // Assign href to the projected host. This fires a native navigation event.
+        window.location.href = 'https://' + TARGET_IDENTITY;
+
+        // STEP D: Handle the Post-Migration State.
+        // After the hop, the browser might still be resolving assets oddly.
+        // We listen for the 'pageshow' event (fires after cache/buffer restore)
+        // to ensure the title settles correctly.
+        window.addEventListener('pageshow', function onPageShow(e) {
+          e.persisted = true; // Mark it as persisted so we don't loop infinitely
+          
+          // Ensure the <title> meta tag reflects the new reality perfectly.
+          let titleEl = document.querySelector('title');
+          if (!titleEl) {
+            titleEl = document.createElement('title');
+            document.head.prepend(titleEl);
+          }
+          titleEl.textContent = TARGET_IDENTITY;
+
+          // Clean up the invisible audio now that the world is stable.
+          setTimeout(() => {
+            priorityAudio.remove();
+          }, 500);
+        }, { once: true });
+
+      };
+
+    } catch (err) {
+      console.warn('[Init] Calibration drift:', err.message);
+      // Even if it fails, disconnect any stray listeners to prevent leaks
+      window.removeEventListener('pageshow', undefined);
+    }
+  });
+})();
+</script>
+
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+
+
+</body>
+</html>

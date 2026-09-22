@@ -1,0 +1,10 @@
+{
+  "name": "cloud-nbr",
+  "version": "1.0.0",
+  "description": "Static e-Return landing page clone, Cloudflare Pages compatible",
+  "private": true,
+  "scripts": {
+    "serve": "npx serve .",
+    "publish": "npx wrangler pages publish . --project-name cloud-nbr"
+  }
+}

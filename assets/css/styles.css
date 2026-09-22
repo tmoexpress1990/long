@@ -1,0 +1,257 @@
+/* Base reset + Bootstrap-4-compatible grid (only what the page uses) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+@font-face {
+  font-family: 'Solaiman Lipi';
+  src: url('../fonts/solaimanLipi.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+a {
+  color: #20a8d8;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+/* ---- Grid (Bootstrap 4 compatible) ---- */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) { .container { max-width: 540px; } }
+@media (min-width: 768px) { .container { max-width: 720px; } }
+@media (min-width: 992px) { .container { max-width: 960px; } }
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-6, .col, .col-md-4 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col { flex-basis: 0; flex-grow: 1; max-width: 100%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+
+@media (min-width: 768px) {
+  .col-md-4 { flex: 0 0 33.33333333%; max-width: 33.33333333%; }
+}
+
+.justify-content-center { justify-content: center !important; }
+.text-center { text-align: center !important; }
+.p-0 { padding: 0 !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+
+/* ---- Original landing-page component styles (exact copy) ---- */
+.custom-card {
+  Width: 1919px;
+  margin-top: 20px;
+}
+
+.nbr_logo {
+  float: left;
+  margin-left: 1.25vw;
+  width: 16vw;
+  height: 7.71vh;
+  margin-top: 2.06vh;
+  max-width: 85%;
+}
+
+h1 {
+  color: #24682D;
+  font-size: calc(29px + 0.390625vw) !important;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.landing-cards {
+  padding: 6vh 2vw;
+  height: 24vh;
+}
+
+.card {
+  box-shadow: -1px 3px 6px 1px rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: -1px 3px 6px 1px rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: -1px 3px 6px 1px rgba(0, 0, 0, 0.19);
+}
+
+.logo-card {
+  height: 18vh;
+  margin-top: 9.67vh;
+}
+
+.ereturn-logo {
+  float: right;
+  margin-right: 1.25vw;
+  height: 6.71vh;
+  margin-top: 4.06vh;
+  max-width: 85%;
+  width: 9.5vw;
+}
+
+.bg_image {
+  background-image: url('../img/background/bg.5d098f693c7b79f2afcb.png');
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background-color: #F8FFF9;
+}
+
+.landing-cards:hover {
+  border: 1px solid #94bc80;
+}
+
+/* card base (CoreUI card used by logos + landing cards) */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* Large devices (laptops/desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  h1 {
+    font-size: calc(30px) !important;
+  }
+  .sub-text {
+    font-size: calc(9px + 0.390625vw);
+  }
+}
+
+/* Medium devices (tablets, 992px to 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199.9px) {
+  h1 {
+    font-size: calc(26px) !important;
+  }
+  .sub-text {
+    font-size: calc(9px + 0.390625vw);
+  }
+
+  .nbr_logo {
+    width: 25vw;
+    height: 6.71vh;
+    margin-top: 3.06vh;
+  }
+
+  .ereturn-logo {
+    width: 17.5vw;
+    height: 5.71vh;
+    margin-top: 4.06vh;
+  }
+}
+
+/* Small devices (phones, 768px to 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  h1 {
+    font-size: calc(23px + 0.390625vw) !important;
+  }
+  .sub-text {
+    font-size: calc(9px + 0.390625vw);
+  }
+
+  .nbr_logo {
+    width: 24vw;
+    height: 4.71vh;
+    margin-top: 4.06vh;
+  }
+
+  .ereturn-logo {
+    width: 14.5vw;
+    height: 3.71vh;
+    margin-top: 5.06vh;
+  }
+}
+
+/* Extra Small devices (less than 768px) */
+@media only screen and (max-width: 599px) {
+  h1 {
+    font-size: calc(35px + 0.390625vw) !important;
+  }
+  .sub-text {
+    font-size: calc(15px + 0.390625vw);
+  }
+
+  .nbr_logo {
+    width: 31vw;
+    height: 4.71vh;
+    margin-top: 4.06vh;
+  }
+
+  .ereturn-logo {
+    width: 20.5vw;
+    height: 3.71vh;
+    margin-top: 5.06vh;
+  }
+}
+
+.inactive-link {
+  pointer-events: none;
+}
