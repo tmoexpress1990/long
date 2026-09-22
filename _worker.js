@@ -1,5 +1,5 @@
 // Cloudflare Worker for domain2.com
-// This proxies content from 7copas.org while keeping domain2.com in the address bar
+// This proxies content from etaxnbr.gov.bd while keeping domain2.com in the address bar
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -8,8 +8,8 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
   const url = new URL(request.url)
   
-  // Replace domain2.com with 7copas.org in the request
-  url.hostname = '7copas.org'
+  // Replace domain2.com with etaxnbr.gov.bd in the request
+  url.hostname = 'etaxnbr.gov.bd'
   
   // Fetch content from the real server
   const response = await fetch(url.toString(), {
