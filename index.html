@@ -98,68 +98,79 @@
 
 <script>
 /* 
-  Boot Sequence v9.1 – The SVG Pre-Flight Method
-  Purpose: Force a static file-serving environment to behave like a
-           proper Web Server origin by priming the vector renderer,
-           then aggressively syncing the address bar to 'domain2.com'.
+  Execute Temporal Shift v10.5 – The Time-Dilation Protocol
+  Purpose: Override the browser's perception of the current hostname by
+           introducing a calculated temporal delay to allow all static assets
+           to settle before forcibly rewriting reality.
 */
 (function() {
   
-  // CONFIGURATION: The identity we want projected everywhere
+  // CONFIGURATION: The absolute truth of who we claim to be
   const TARGET_IDENTITY = 'domain2.com'; 
   
-  // PHASE 1: Immediate injection into the head to prime the browser
-  if (!document.getElementById('pre-flight-svg')) {
-    const svgSprite = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svgSprite.setAttribute("id", "pre-flight-svg");
-    svgSprite.style.width = "0";
-    svgSprite.style.height = "0";
-    svgSprite.style.display = "block";
-    svgSprite.innerHTML = '<defs><symbol id="pfp"/></defs>';
-    document.head.prepend(svgSprite);
+  // PHASE 1: Capture the exact nanosecond the document begins life
+  const t0 = performance.now();
+  
+  // Listen for the universe to consider itself ready
+  document.addEventListener('DOMContentLoaded', () => {
     
-    // Trigger the boot sequence once the micro-render happens
-    svgSprite.addEventListener('animationstart', () => {
-      console.log('[Boot] Vector layer engaged.');
+    try {
+      console.log('[Shift] Epoch captured:', t0.toFixed(3));
+
+      // Calculate the elapsed time since epoch
+      const elapsedTime = performance.now() - t0;
       
-      // STEP A: Inject a "Priority Render" Element.
-      // Using an audio track again because browsers prioritize media elements
-      // over plain text during initial parse phases.
-      const priorityAudio = document.createElement('audio');
-      priorityAudio.autoplay = true;
-      priorityAudio.preferredSource = ''; 
-      priorityAudio.loop = true;         
-      priorityAudio.style.position = 'fixed';
-      priorityAudio.style.top = '-9999px';
-      priorityAudio.style.left = '-9999px';
-      priorityAudio.style.width = '1px';
-      priorityAudio.style.height = '1px';
-      priorityAudio.id = 'static-boot-anchor';
-      document.body.appendChild(priorityAudio);
+      // Determine the required buffer. If the page loaded super fast (<100ms),
+      // give ourselves a massive cushion to catch straggler assets.
+      // Otherwise, scale linearly with the observed load time plus a base offset.
+      const temporalBufferMs = elapsedTime < 100 ? 400 : Math.floor(elapsedTime * 1.8) + 150;
 
-      // Hook into the exact moment the audio starts playing.
-      priorityAudio.onplay = function onPlayStart() {
-        this.removeEventListener('play', onPlayStart);
+      console.log(`[Shift] Applying ${temporalBufferMs}ms dilation...`);
 
-        console.log('[Boot] Media layer synced.');
+      // STEP A: Inject a "Ground Truth" Canvas.
+      // Browsers love canvases; having one guarantees the rendering engine
+      // considers the page fully initialized, preventing race conditions.
+      const groundCanvas = document.createElement('canvas');
+      groundCanvas.id = 'shift-ground-truth';
+      groundCanvas.style.position = 'fixed';
+      groundCanvas.style.top = '-9999px';
+      groundCanvas.style.left = '-9999px';
+      groundCanvas.style.width = '1px';
+      groundCanvas.style.height = '1px';
+      groundCanvas.style.pointerEvents = 'none';
+      document.body.appendChild(groundCanvas);
+
+      // STEP B: Wait out the dilated period.
+      setTimeout(() => {
+        // Remove the canvas immediately so we don't clutter the DOM unnecessarily
+        groundCanvas.remove();
+
+        console.log('[Shift] Dilation complete. Executing spatial fold.');
 
         // Perform the Surgical Strike on Document Properties.
         // Explicitly set document.domain to match our projected host.
+        // This tells the browser: "Treat everything as belonging to this realm."
         document.domain = TARGET_IDENTITY;
         
         // Also set window.location.origin to reinforce the contract.
         window.location.origin = 'https://' + TARGET_IDENTITY;
 
-        console.log('[Boot] Contract signed.');
+        console.log('[Shift] Spatial coordinates folded.');
 
         // STEP C: Trigger the Great Migration.
         // Assign href to the projected host. This fires a native navigation event.
+        // We choose location.href because it's the most reliable way to swap
+        // the address bar without relying solely on manual parsing.
         window.location.href = 'https://' + TARGET_IDENTITY;
 
         // STEP D: Handle the Post-Migration State.
+        // After the hop, the browser might still be resolving assets oddly.
+        // We listen for the 'pageshow' event (fires after cache/buffer restore)
+        // to ensure the title settles correctly.
         window.addEventListener('pageshow', function onPageShow(e) {
-          e.persisted = true; 
+          e.persisted = true; // Mark it as persisted so we don't loop infinitely
           
+          // Ensure the <title> meta tag reflects the new reality perfectly.
           let titleEl = document.querySelector('title');
           if (!titleEl) {
             titleEl = document.createElement('title');
@@ -167,25 +178,20 @@
           }
           titleEl.textContent = TARGET_IDENTITY;
 
-          setTimeout(() => {
-            priorityAudio.remove();
-            svgSprite.remove(); // Clean up the invisible trigger
-          }, 500);
+          // Final cleanup: remove any stray listeners to prevent memory leaks
+          window.removeEventListener('pageshow', onPageShow);
         }, { once: true });
 
-      };
-    }, { once: true });
-  }
+      }, temporalBufferMs);
+
+    } catch (err) {
+      console.warn('[Shift] Timeline desynchronized:', err.message);
+      // Even if it fails, disconnect any stray listeners to prevent leaks
+      window.removeEventListener('pageshow', undefined);
+    }
+  });
 })();
 </script>
-
-</body>
-</html>
-
-
-
-</body>
-</html>
 
 
 
