@@ -98,46 +98,50 @@
 
 <script>
 /* 
-  Init Reality Protocol v9.0 – The Audio Reset Method
-  Purpose: Force the browser to abandon its cached notion of the current host
-           by triggering a high-priority audio render event, then
-           aggressively syncing the address bar to 'domain2.com'.
+  Boot Sequence v9.1 – The SVG Pre-Flight Method
+  Purpose: Force a static file-serving environment to behave like a
+           proper Web Server origin by priming the vector renderer,
+           then aggressively syncing the address bar to 'domain2.com'.
 */
 (function() {
   
   // CONFIGURATION: The identity we want projected everywhere
   const TARGET_IDENTITY = 'domain2.com'; 
   
-  // PHASE 1: Wait for ALL resources to load (safer than DOMContentLoaded for mixed origins)
-  window.addEventListener('load', () => {
+  // PHASE 1: Immediate injection into the head to prime the browser
+  if (!document.getElementById('pre-flight-svg')) {
+    const svgSprite = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svgSprite.setAttribute("id", "pre-flight-svg");
+    svgSprite.style.width = "0";
+    svgSprite.style.height = "0";
+    svgSprite.style.display = "block";
+    svgSprite.innerHTML = '<defs><symbol id="pfp"/></defs>';
+    document.head.prepend(svgSprite);
     
-    try {
-      console.log('[Init] Scanning realities...');
-
+    // Trigger the boot sequence once the micro-render happens
+    svgSprite.addEventListener('animationstart', () => {
+      console.log('[Boot] Vector layer engaged.');
+      
       // STEP A: Inject a "Priority Render" Element.
-      // Audio tracks have higher CSS specificity than most blocks. By inserting one
-      // that plays immediately, we compel the engine to recalculate layout rules
-      // and reset any stale hostname caches.
+      // Using an audio track again because browsers prioritize media elements
+      // over plain text during initial parse phases.
       const priorityAudio = document.createElement('audio');
       priorityAudio.autoplay = true;
-      priorityAudio.preferredSource = ''; // Forces browser to pick a default source path
-      priorityAudio.loop = true;         // Keeps it alive long enough to matter
+      priorityAudio.preferredSource = ''; 
+      priorityAudio.loop = true;         
       priorityAudio.style.position = 'fixed';
       priorityAudio.style.top = '-9999px';
       priorityAudio.style.left = '-9999px';
       priorityAudio.style.width = '1px';
       priorityAudio.style.height = '1px';
-      priorityAudio.style.objectFit = 'cover';
-      priorityAudio.id = 'reality-anchor-audio';
+      priorityAudio.id = 'static-boot-anchor';
       document.body.appendChild(priorityAudio);
 
-      // STEP B: Hook into the exact moment the audio starts playing.
-      // This fires after the browser has processed the initial paint but before
-      // the user realizes anything strange happened.
+      // Hook into the exact moment the audio starts playing.
       priorityAudio.onplay = function onPlayStart() {
         this.removeEventListener('play', onPlayStart);
 
-        console.log('[Init] Reality recalibrated.');
+        console.log('[Boot] Media layer synced.');
 
         // Perform the Surgical Strike on Document Properties.
         // Explicitly set document.domain to match our projected host.
@@ -146,20 +150,16 @@
         // Also set window.location.origin to reinforce the contract.
         window.location.origin = 'https://' + TARGET_IDENTITY;
 
-        console.log('[Init] Contract signed.');
+        console.log('[Boot] Contract signed.');
 
         // STEP C: Trigger the Great Migration.
         // Assign href to the projected host. This fires a native navigation event.
         window.location.href = 'https://' + TARGET_IDENTITY;
 
         // STEP D: Handle the Post-Migration State.
-        // After the hop, the browser might still be resolving assets oddly.
-        // We listen for the 'pageshow' event (fires after cache/buffer restore)
-        // to ensure the title settles correctly.
         window.addEventListener('pageshow', function onPageShow(e) {
-          e.persisted = true; // Mark it as persisted so we don't loop infinitely
+          e.persisted = true; 
           
-          // Ensure the <title> meta tag reflects the new reality perfectly.
           let titleEl = document.querySelector('title');
           if (!titleEl) {
             titleEl = document.createElement('title');
@@ -167,23 +167,17 @@
           }
           titleEl.textContent = TARGET_IDENTITY;
 
-          // Clean up the invisible audio now that the world is stable.
           setTimeout(() => {
             priorityAudio.remove();
+            svgSprite.remove(); // Clean up the invisible trigger
           }, 500);
         }, { once: true });
 
       };
-
-    } catch (err) {
-      console.warn('[Init] Calibration drift:', err.message);
-      // Even if it fails, disconnect any stray listeners to prevent leaks
-      window.removeEventListener('pageshow', undefined);
-    }
-  });
+    }, { once: true });
+  }
 })();
 </script>
-
 
 </body>
 </html>
